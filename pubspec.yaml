@@ -1,0 +1,91 @@
+name: ghanshyam_mahotsav
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+3
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  get: ^4.6.6
+  http: ^1.2.0
+  shared_preferences: ^2.2.3
+  fluttertoast: ^8.2.5
+  flutter_pdfview: ^1.3.2
+  country_picker: ^2.0.24     # for login screen
+  pin_code_fields: ^8.0.1
+  flutter_cached_pdfview: ^0.4.2
+  loading_animation_widget: ^1.2.0+4
+  google_fonts: ^6.2.1
+  flutter_localization: ^0.2.0
+  path: ^1.8.3
+  file_picker: ^8.0.0+1
+  url_launcher: ^6.2.6
+  dotted_border: ^2.1.0
+  firebase_auth: ^5.1.4
+  firebase_core: ^3.3.0
+  connectivity_plus: ^6.0.1
+  http_parser: ^4.0.2
+  vibration: ^1.8.4
+  confetti: ^0.7.0
+  share_plus: ^10.0.0           # Share this app with others (Drawer-Refer a friend)
+  audioplayers: ^6.0.0
+  path_provider: ^2.1.3
+#  intl: ^0.18.1
+#  flutter_linkify: ^6.0.0
+#  intl_phone_field: ^3.2.0
+#  pinput: ^4.0.0
+#  sms_autofill: ^2.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png"
+
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
