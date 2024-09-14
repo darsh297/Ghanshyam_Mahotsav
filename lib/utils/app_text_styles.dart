@@ -7,6 +7,7 @@ class AppTextStyle {
   TextStyle montserrat28W700 = GoogleFonts.montserrat(fontSize: 24, fontWeight: FontWeight.w700);
   TextStyle montserrat22W700White = GoogleFonts.montserrat(fontSize: 22, fontWeight: FontWeight.w700, color: AppColors.white);
   TextStyle montserrat22W700 = GoogleFonts.montserrat(fontSize: 18, fontWeight: FontWeight.w700);
+  TextStyle montserrat14W600Black = GoogleFonts.montserrat(fontSize: 30, fontWeight: FontWeight.w700, color: Colors.black);
 
   /// 18
   TextStyle montserrat18W700 = GoogleFonts.montserrat(fontSize: 18, fontWeight: FontWeight.w700);
@@ -55,4 +56,25 @@ class AppTextStyle {
   TextStyle inter20Grey = GoogleFonts.inter(fontSize: 14, color: AppColors.black, fontWeight: FontWeight.w400, letterSpacing: 4);
   TextStyle inter20DarkGrey = GoogleFonts.inter(fontSize: 16, color: AppColors.grey4, fontWeight: FontWeight.w400, letterSpacing: 2);
   TextStyle inter12DarkGrey = GoogleFonts.inter(fontSize: 12, color: AppColors.grey4, fontWeight: FontWeight.w400, letterSpacing: 2);
+
+
+  // Method to get TextStyle with dynamic font size
+  TextStyle montserratDynamicWhite(double fontSize) {
+    return GoogleFonts.montserrat(
+      fontSize: fontSize,
+      fontWeight: FontWeight.w600,
+      color: AppColors.white,
+    );
+  }
+
+  // You can define other text styles with dynamic sizes similarly if needed
+  TextStyle montserratDynamicBlack(double fontSize) {
+    return GoogleFonts.montserrat(
+      fontSize: fontSize,
+      fontWeight: FontWeight.w600,
+      color: Colors.black, // Example for black text color
+    );
+  }
+
+// Additional styles...
 }

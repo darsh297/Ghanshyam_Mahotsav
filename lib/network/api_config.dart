@@ -9,6 +9,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../model/deleteUserModel.dart';
 import '../model/getTotalJapDataResponseModel.dart';
 import '../utils/shared_preference.dart';
 import '../utils/string_utils.dart';
@@ -266,4 +267,35 @@ class ApiBaseHelper {
       CustomWidgets.toastValidation(msg: 'Please connect to internet');
     }
   }
+
+  static Future<DeleteUserModel?> deleteUser({required String id}) async {
+    if (await CustomWidgets.isNetworkAvailable()) {
+      log('Token is a :---> ${await SharedPreferenceClass().retrieveData(StringUtils.prefUserTokenKey)}');
+
+      try {
+        http.Response response = await http.delete(
+          Uri.parse('${ApiStrings.kBaseAPI}user?id=$id'),
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': '${await SharedPreferenceClass().retrieveData(StringUtils.prefUserTokenKey)}'
+          },
+        );
+
+        if (response.statusCode == 200) {
+          var jsonString = response.body;
+          return deleteUserModelFromJson(jsonString);
+        } else {
+          return null;
+        }
+      }
+      catch (e) {
+        print(e);
+        CustomWidgets.toastValidation(msg: 'Something went wrong , Please is refresh the tab');
+      }
+    } else {
+      CustomWidgets.toastValidation(msg: 'Please connect to internet');
+    }
+    return null;
+  }
+
 }
