@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ghanshyam_mahotsav/network/api_config.dart';
 import 'package:ghanshyam_mahotsav/network/api_strings.dart';
@@ -7,6 +8,7 @@ import 'package:ghanshyam_mahotsav/network/api_strings.dart';
 import '../model/getTopUserDataResponseModel.dart';
 import '../utils/shared_preference.dart';
 import '../utils/string_utils.dart';
+import '../view/login_page.dart';
 
 class TopUserController extends GetxController {
   final ApiBaseHelper apiBaseHelper = ApiBaseHelper();
@@ -25,6 +27,15 @@ class TopUserController extends GetxController {
   // RxList<Top50User> topUserList = <Top50User>[].obs;
 
   String id = "";
+
+  Future deleteUserData() async {
+    id = await sharedPreferenceClass.retrieveData(StringUtils.prefUserId);
+      var data = await ApiBaseHelper.deleteUser(id: id);
+      if (data?.message == "User deleted successfully") {
+        SharedPreferenceClass().removeAllData();
+        Get.offAll(() => LoginPage());
+      }
+  }
 
   Future get50UserData() async {
     var data = await ApiBaseHelper.get50Data(leadAPI: url);

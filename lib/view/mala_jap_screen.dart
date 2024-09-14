@@ -256,9 +256,7 @@ class _MalaJapScreenState extends State<MalaJapScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Positioned(
-                    left: 0,
-                    child: GestureDetector(
+                  GestureDetector(
                       onTap: () {
                         // Sound toggle logic here
                         malaJapController.isSoundOn.value = !malaJapController.isSoundOn.value;
@@ -290,7 +288,6 @@ class _MalaJapScreenState extends State<MalaJapScreen> {
                         ),
                       ),
                     ),
-                  ),
                   Stack(
                     children: [
                       Positioned.fill(
@@ -323,9 +320,7 @@ class _MalaJapScreenState extends State<MalaJapScreen> {
                       ),
                     ],
                   ),
-                  Positioned(
-                    right: 0,
-                    child: GestureDetector(
+                  GestureDetector(
                       onTap: () {
                         // Vibration toggle logic here
                         malaJapController.isVibrationOn.value = !malaJapController.isVibrationOn.value;
@@ -357,7 +352,6 @@ class _MalaJapScreenState extends State<MalaJapScreen> {
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ],

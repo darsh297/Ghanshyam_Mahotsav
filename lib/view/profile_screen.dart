@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:ghanshyam_mahotsav/view/login_page.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../controller/top_user_controller.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 import '../utils/shared_preference.dart';
@@ -27,6 +29,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final AppTextStyle appTextStyle = AppTextStyle();
   final RxInt? credits = 0.obs;
   final RxBool isAdmin = false.obs;
+  final TopUserController deleteUser = Get.put(TopUserController());
+
 
   getIfAdmin() async {
     isAdmin.value =
@@ -186,12 +190,64 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       : const SizedBox(),
                 ),
                 DrawerTile(
-                    title: 'Rate Us',
+                    title: 'privacy policy',
                     onTap: () {
                       launchUrl(Uri.parse(
-                          'https://play.google.com/store/apps/details?id=com.whatsapp&pcampaignid=web_share'));
+                          'https://policies.easstemple.com/privacy/'));
                     },
-                    icons: const Icon(Icons.star_rate)),
+                    icons: const Icon(Icons.privacy_tip)),
+                DrawerTile(
+                  title: 'Delete Account',
+                  icons: const Icon(Icons.delete), // Using delete icon
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false, // Prevent dismissing the dialog by tapping outside
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Confirmation'), // Dialog title
+                          content: const Text('Are you sure you want to delete your account?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Get.back(), // Close the dialog
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                var checkAdmin = await sharedPreferenceClass.retrieveData(StringUtils.prefIsAdmin);
+                                log("admin............................$checkAdmin");
+                                if(checkAdmin == true){
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text("Admin Access"),
+                                        content: Text("You are an admin and cannot be deleted."),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop(); // Close the dialog
+                                            },
+                                            child: Text("OK"),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }else{
+                                  await deleteUser.deleteUserData();
+                                }
+                              },
+                              child: const Text('Delete'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  isLast: true, // Mark as the last option
+                ),
+
                 DrawerTile(
                   title: 'Sign Out',
                   icons: const Icon(Icons.login_outlined),
